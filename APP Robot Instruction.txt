@@ -1,0 +1,10 @@
+Fichier:
+index.html: Graphique de l'application
+main.js: Serveur NodeJs (utilisation de miio)
+index.js: Clien NodeJs
+
+Commande Miio possible: https://github.com/marcelrv/XiaomiRobotVacuumProtocol
+
+cmd:
+"androidjs b" dans le dossier de l'app: création du .apk
+"adb install ../app1/dist/app1.apk" dans le dossier ../platform-tools: installation de l'application sur le téléphone (déboguage activé)

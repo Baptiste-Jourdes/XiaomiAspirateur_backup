@@ -1,1 +1,6 @@
-# XiaomiAspirateur
+
+## Build
+```bash
+$ androidjs b
+```
+
