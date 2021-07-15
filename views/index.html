@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="../assets/bootstrap.min.css">
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript" src="../node_modules/androidjs/lib/androidjs.js"></script>
+	
+	<script type="text/javascript">
+		function Action(cmd,arg){
+			var args = [];
+			console.log('Action');
+			if (arg==1){
+				var elements = document.getElementsByClassName("CheckBoxPiece");
+					for (var x = 1; x <= 3; x++) {
+						var element = document.getElementById("C" + x);
+						if(element.checked == true){
+							var storedArray = JSON.parse(element.dataset.args);
+							args.push(storedArray);
+						}
+					}
+			}else if(cmd=='app_goto_target'){
+				args = [26500,26250];
+			}
+			console.log(args);
+			console.log(cmd + ':' + args);
+			front.send("SendCMD",cmd,args);
+		}
+</script>
+<link type="text/css" href="theme.css" rel="stylesheet">
+	<title>Android App</title>
+
+</head>
+
+<style>
+	.app{
+		font-size:30px;
+	}
+</style>
+
+
+<body class="entire-webpage" style="width=device-width">
+
+	<div style="text-align:left">
+		<div class="Status">
+			<label class="control-label" id="cc">Info:</label>
+			<div style="margin-top:-10px">
+				<label>Batterie:</label><label style="margin-left:5px" id="Battery">/</label><label>%</label>
+			</div>
+			<div style="margin-top:-10px">
+				<label>Etat:</label><label style="margin-left:5px" id="State">/</label>
+			</div>
+			<div style="margin-top:-10px">
+				<label" style="visibility:hidden" id="Area">/</label>
+			</div>
+		</div>
+		<div class="piece">
+			<div class="control-group">
+						<label class="control-label">Pièce:</label>
+						<div class="controls">
+							<label class="checkbox inline">
+								<input type="checkbox" class = "CheckBoxPiece" name="Cuisine" data-args="[25730,25382,29730,28374,1]" id="C1" checked>	<!--[25783,25191,29733,28641,1] x1,y1,x2,y2 [[25730,25474,29730,28374,1],[27797,24928,29897,25478,1]]  [[25730,25374,29780,28374,1]]-->
+								Cuisine
+							</label>
+							<label class="checkbox inline">
+								<input type="checkbox" class = "CheckBoxPiece" name="SalleaManger" data-args="[24845,28527,29195,36977,1]" id="C2">
+								Salle à Manger
+							</label>
+						</div>
+						<div class="controls">
+							<label class="checkbox inline">
+								<input type="checkbox" class = "CheckBoxPiece" name="Couloir" data-args="[23756,28973,24806,32823,1]" id="C3">
+								Couloir
+							</label>
+						</div>
+			</div>
+		</div>
+	</div>
+	
+	<div style="text-align:center">
+		<button type="button"  onClick="Action('app_zoned_clean',1)" class="button">Nettoyage</button>
+		<label id="miio_back_app_zoned_clean" class="return-label"></label>
+	</div>
+	<div style="text-align:center">
+		<button type="button"  onClick="Action('app_pause',0)" class="button">Pause</button>
+		<label id="miio_back_app_pause" class="return-label"></label>
+	</div>
+	<div style="text-align:center">
+		<button type="button"  onClick="Action('resume_zoned_clean',0)" class="button">Reprendre Nettoyage</button>
+		<label id="miio_back_resume_zoned_clean" class="return-label"></label>
+	</div>
+	<div style="text-align:center">
+		<button type="button"  onClick="Action('app_charge',0)" class="button">Retour à la Base</button>
+		<label id="miio_back_app_charge" class="return-label"></label>
+	</div>
+	<div style="text-align:center">
+		<button type="button"  onClick="Action('app_goto_target',0)" class="button">Vidage</button>
+		<label id="miio_back_app_goto_target" class="return-label"></label>
+	</div>
+
+<script type="text/javascript" src = "../assets/script.js"></script>
+<script src="../assets/jquery-3.3.1.slim.min.js"></script>
+<script src="../assets/popper.min.js"></script>
+<script src="../assets/bootstrap.min.js"></script>
+<style type="text/css">
+  html, body {
+    height: 100%;
+  }
+
+  .container {
+    padding: 0px;
+  }
+
+  .display-3 {
+    font-size: 2.0rem;
+  }
+
+  .jumbotron {
+    background: #fff;
+  }
+
+</style>
+</body>
+
+</html>
